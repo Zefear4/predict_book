@@ -166,10 +166,20 @@
     backdrop.classList.remove('closing');
     backdrop.classList.add('open');
     backdrop.setAttribute('aria-hidden', 'false');
-    stage.classList.remove('is-closing', 'is-open');
-    // Let the closed leather cover settle on screen, then swing it around the spine.
-    requestAnimationFrame(() => requestAnimationFrame(() => stage.classList.add('is-open')));
+    // First show the book in its exact closed state, then on the next paint
+    // switch to the same open state that closeBook() reverses from. This lets
+    // the browser interpolate the cover over the full CSS transition duration
+    // instead of skipping the opening animation when the modal becomes visible.
+    stage.classList.remove('is-open');
+    stage.classList.add('is-closing');
     document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (!backdrop.classList.contains('open')) return;
+        stage.classList.remove('is-closing');
+        stage.classList.add('is-open');
+      });
+    });
     $('close-book').focus();
   }
   function closeBook() {

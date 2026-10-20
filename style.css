@@ -57,7 +57,7 @@
 /* REAL BOOK MECHANICS — sculpted leather boards, page block and hinged cover */
 .book-stage{position:relative;width:min(660px,100%);height:clamp(290px,38vw,390px);margin:0 auto;perspective:2400px;perspective-origin:50% 48%;isolation:isolate;filter:drop-shadow(0 24px 28px rgba(0,0,0,.36));transform-style:preserve-3d}
 .book-stage:before{content:"";position:absolute;inset:3% 1% 1%;border-radius:8px;background:linear-gradient(180deg,#21142f,#0b0819);box-shadow:0 18px 30px #070512;transform:translateZ(-12px)}
-.book-back-cover{position:absolute;z-index:8;left:0;top:0;width:50.5%;height:100%;border-radius:7px 0 0 7px;background:radial-gradient(ellipse at 50% 45%,rgba(166,120,218,.24),transparent 55%),linear-gradient(100deg,#20112f,#392252 42%,#251439);border:2px solid #bd9149;box-shadow:inset 0 0 0 5px #251637,inset 0 0 0 7px rgba(224,188,107,.72),inset 14px 0 22px rgba(0,0,0,.45),inset -5px 0 9px rgba(255,222,156,.15);transition:z-index 0s .95s}
+.book-back-cover{position:absolute;z-index:8;left:0;top:0;width:50.5%;height:100%;border-radius:7px 0 0 7px;background:radial-gradient(ellipse at 50% 45%,rgba(166,120,218,.24),transparent 55%),linear-gradient(100deg,#20112f,#392252 42%,#251439);border:2px solid #bd9149;box-shadow:inset 0 0 0 5px #251637,inset 0 0 0 7px rgba(224,188,107,.72),inset 14px 0 22px rgba(0,0,0,.45),inset -5px 0 9px rgba(255,222,156,.15);transition:z-index 0s}
 .book-back-cover:before{content:"";position:absolute;inset:15px 13px 15px 16px;border:1px solid rgba(239,204,126,.7);box-shadow:inset 0 0 0 4px rgba(229,190,107,.06)}
 .back-cover-stamp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:68px;height:68px;border:1px solid rgba(231,198,119,.7);border-radius:50%;outline:1px solid rgba(231,198,119,.25);outline-offset:5px;color:#d9b86e;font-size:42px;text-shadow:0 0 15px rgba(232,199,121,.5)}
 .back-cover-lines{position:absolute;inset:26px 22px;border:1px solid rgba(235,200,125,.18);border-radius:2px}
@@ -65,8 +65,8 @@
 .book-cover{z-index:10;left:50%;right:auto;top:0;bottom:0;width:50%;min-height:0;height:100%;border-radius:0 7px 7px 0;transform-origin:left center;transform:rotateY(0deg) translateZ(7px);box-shadow:inset 0 0 0 5px #2a1b49,inset 0 0 0 7px rgba(225,190,111,.75),inset 13px 0 20px rgba(0,0,0,.45),inset -8px 0 14px rgba(255,220,145,.12),7px 9px 0 #9b7040,10px 13px 0 #3a213b,14px 18px 22px rgba(0,0,0,.38);transition:transform .98s cubic-bezier(.22,.72,.15,1),box-shadow .7s,z-index 0s}
 .book-cover:before{inset:14px 12px 14px 13px;border-radius:2px 5px 5px 2px}
 .book-cover:after{bottom:18px;font-size:11px}
-.book-stage.is-open .book-cover{transform:rotateY(-178deg) translateZ(7px);z-index:1;transition-delay:0s,.1s,.98s;box-shadow:inset 0 0 0 5px #2a1b49,inset 0 0 0 7px rgba(225,190,111,.75),inset 13px 0 20px rgba(0,0,0,.45),inset -8px 0 14px rgba(255,220,145,.12),-5px 8px 0 #9b7040,0 12px 20px rgba(0,0,0,.3)}
-.book-stage.is-open .book-back-cover{z-index:1}
+.book-stage.is-open .book-cover{transform:rotateY(-178deg) translateZ(7px);z-index:1;transition-delay:0s,.1s,0s;box-shadow:inset 0 0 0 5px #2a1b49,inset 0 0 0 7px rgba(225,190,111,.75),inset 13px 0 20px rgba(0,0,0,.45),inset -8px 0 14px rgba(255,220,145,.12),-5px 8px 0 #9b7040,0 12px 20px rgba(0,0,0,.3)}
+.book-stage.is-open .book-back-cover{z-index:1;transition-delay:0s}
 .book-stage.is-closing .book-cover{z-index:10;transform:rotateY(0deg) translateZ(7px);transition-delay:0s}
 .book-stage.is-closing .book-back-cover{z-index:8}
 .book-stage .cover-emblem{width:70px;height:70px}
@@ -182,3 +182,8 @@
 /* The page block is visible only while the book is closed; otherwise it covers the right page. */
 .book-stage.is-open .book-page-block{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,visibility 0s linear .18s}
 .book-stage.is-closing .book-page-block{opacity:1;visibility:visible;transition:opacity .18s ease,visibility 0s}
+
+/* Hide the open spread as soon as closing starts, so the left page does not linger behind the closing cover. */
+.book-stage .book-spread{transition:opacity .12s ease,visibility 0s linear 0s}
+.book-stage.is-closing .book-spread{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .1s ease,visibility 0s linear .1s}
+.book-stage.is-open .book-spread{opacity:1;visibility:visible;transition:opacity .08s ease}
