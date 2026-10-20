@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100d26">
+  <meta name="description" content="Маленькое магическое место для тёплых предсказаний и пожеланий.">
+  <title>Тихая магия — предсказания</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sky" aria-hidden="true"><div class="nebula nebula-one"></div><div class="nebula nebula-two"></div><div class="stars" id="stars"></div></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Тихая магия — на главную"><span class="brand-mark">✧</span><span>тихая <i>магия</i></span></a>
+    <div class="top-actions">
+      <div class="collection-pill" title="Найдено предсказаний"><span>✧</span><span id="header-count">0 / 0</span></div>
+      <button class="book-shortcut" id="open-book" aria-label="Открыть книгу предсказаний"><span class="book-icon" aria-hidden="true"></span><span class="book-dot" id="book-dot"></span></button>
+    </div>
+  </header>
+
+  <main class="main-shell">
+    <section class="intro" id="intro">
+      <div class="eyebrow"><span class="eyebrow-line"></span> МАЛЕНЬКОЕ ЧУДО НА СЕГОДНЯ <span class="eyebrow-line"></span></div>
+      <h1>Прислушайся к <em>магии</em></h1>
+      <p class="subtitle">Иногда самое нужное послание приходит<br class="desktop-break"> именно тогда, когда ты готов его услышать.</p>
+    </section>
+
+    <section class="oracle-stage" aria-label="Магический шар">
+      <div class="orbit orbit-outer" aria-hidden="true"></div><div class="orbit orbit-inner" aria-hidden="true"></div>
+      <div class="orbital-spark spark-a" aria-hidden="true">✦</div><div class="orbital-spark spark-b" aria-hidden="true">✧</div><div class="orbital-spark spark-c" aria-hidden="true">·</div><div class="orbital-spark spark-d" aria-hidden="true">✦</div>
+      <button class="crystal-ball" id="crystal-ball" aria-label="Получить предсказание — нажми на магический шар">
+        <span class="ball-halo"></span><span class="ball-glass"><span class="ball-cloud cloud-one"></span><span class="ball-cloud cloud-two"></span><span class="ball-core"></span><span class="ball-glint"></span><span class="ball-star">✧</span></span>
+        <span class="ball-base"><span></span><i></i></span>
+      </button>
+      <div class="tap-hint" id="tap-hint"><span class="hint-dot"></span> Коснись шара, чтобы узнать послание</div>
+      <div class="magic-burst" id="magic-burst" aria-hidden="true"></div>
+    </section>
+
+    <section class="prediction-area" aria-live="polite" aria-atomic="true">
+      <div class="prediction-card" id="prediction-card">
+        <div class="card-corner corner-tl">✧</div><div class="card-corner corner-tr">✧</div><div class="card-corner corner-bl">✧</div><div class="card-corner corner-br">✧</div>
+        <div class="prediction-topline"><span class="rarity-mark" id="rarity-mark">✦</span><span id="rarity-label">ТВОЁ ПОСЛАНИЕ</span><span class="rarity-mark" id="rarity-mark-right">✦</span></div>
+        <div class="prediction-emoji" id="prediction-emoji">☾</div>
+        <h2 id="prediction-title">Здесь тебя ждёт что-то хорошее</h2>
+        <p id="prediction-text">Нажми на шар — и пусть маленькое чудо найдёт тебя сегодня.</p>
+        <div class="prediction-footer"><span class="category-chip" id="category-chip">Мгновение магии</span><span class="new-find" id="new-find">✧ Новая находка</span></div>
+      </div>
+    </section>
+
+    <div class="below-note"><span>✦</span> У каждого послания — своё маленькое чудо <span>✦</span></div>
+  </main>
+
+  <div class="modal-backdrop" id="book-backdrop" aria-hidden="true">
+    <section class="book-modal" role="dialog" aria-modal="true" aria-labelledby="book-title">
+      <button class="close-book" id="close-book" aria-label="Закрыть книгу">×</button>
+      <div class="book-heading"><div class="book-heading-kicker">ТВОЯ ЛИЧНАЯ КОЛЛЕКЦИЯ</div><h2 id="book-title">Книга <em>чудес</em></h2><p>Каждое найденное послание остаётся здесь.</p></div>
+      <div class="book-progress"><div class="progress-copy"><span>Твоя коллекция</span><strong id="book-count">0 из 0</strong></div><div class="progress-track"><span id="progress-fill"></span></div></div>
+      <div class="book-stage" id="book-stage">
+        <div class="book-back-cover" aria-hidden="true"><span class="back-cover-stamp">✧</span><span class="back-cover-lines"></span></div>
+        <div class="book-page-block" aria-hidden="true"></div>
+        <div class="book-cover" id="book-cover" aria-hidden="true">
+          <div class="cover-corner cover-corner-tl">❧</div><div class="cover-corner cover-corner-tr">❧</div>
+          <div class="cover-emblem"><span class="cover-emblem-ring">✧</span><span class="cover-moon">☾</span><span class="cover-star">✦</span></div>
+          <div class="cover-title">Книга<br><em>чудес</em></div>
+          <div class="cover-subtitle">SECRETUM LUMINIS</div>
+          <div class="cover-corner cover-corner-bl">❧</div><div class="cover-corner cover-corner-br">❧</div>
+        </div>
+        <div class="book-spread" id="book-spread">
+          <div class="book-page left-page" id="left-page"><div class="page-ornament top-ornament">✧ · ✦ · ✧</div><div class="page-number">I</div><div class="page-content" id="left-page-content"></div><div class="page-ornament bottom-ornament">❦</div></div>
+          <div class="book-spine"><span>✧</span></div>
+          <div class="book-page right-page" id="right-page"><div class="page-ornament top-ornament">✧ · ✦ · ✧</div><div class="page-number">II</div><div class="page-content" id="right-page-content"></div><div class="page-ornament bottom-ornament">❦</div></div>
+        </div>
+        <button class="page-edge page-edge-prev" id="book-edge-prev" aria-label="Перелистнуть назад"></button>
+        <button class="page-edge page-edge-next" id="book-edge-next" aria-label="Перелистнуть вперёд"></button>
+      </div>
+      <div class="book-controls"><span class="page-indicator" id="page-indicator">Разворот 1</span><button class="page-arrow sr-only" id="prev-page" aria-label="Предыдущие страницы" tabindex="-1" aria-hidden="true">←</button><button class="page-arrow sr-only" id="next-page" aria-label="Следующие страницы" tabindex="-1" aria-hidden="true">→</button></div>
+      <div class="book-legend"><span><i class="legend-dot ordinary"></i> Обычное</span><span><i class="legend-dot rare"></i> Редкое</span><span><i class="legend-dot legendary"></i> Легендарное</span></div>
+      <p class="book-footnote">Закрытые страницы ждут своего часа. Вернись к шару, чтобы найти их.</p>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="predictions.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
